@@ -18,7 +18,8 @@
   },
   "homepage": "https://github.com/rmi22186/formstack-challenge",
   "devDependencies": {
+    "browser-sync": "^2.7.3",
     "gulp": "^3.8.11",
-    "nodemon": "^1.3.7"
+    "gulp-nodemon": "^2.0.3"
   }
 }
