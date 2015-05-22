@@ -1,34 +1,17 @@
 angular.module('formstack.controllers', ['ui.bootstrap'])
 
 .controller('FormstackCtrl', function($scope, FormstackData, $modal, $log) {
-  
-  //start charts
-  //green, orange -- why can't i store these as rgb!?
-  Chart.defaults.global.colours = ['#41AA43', '#EA9E0A'];
-
-  $scope.phoneConversionSum = 0;
-  $scope.phoneTotalsSum = 0;
-  $scope.noPhoneConversionSum = 0;
-  $scope.noPhoneTotalsSum = 0;
-
-  $scope.runTest = function() {
-    $scope.phoneConversionSum = FormstackData.compileTotalsData().phoneConversionSum;
-    $scope.noPhoneConversionSum = FormstackData.compileTotalsData().noPhoneConversionSum;
-    $scope.phoneTotalsSum = FormstackData.compileTotalsData().phoneTotalsSum;
-    $scope.noPhoneTotalsSum = FormstackData.compileTotalsData().noPhoneTotalsSum;
-
-    $scope.series = ['w/ Phone #', 'w/o Phone #'];
-    $scope.labels = ['', '', '', '', ''];
-    $scope.options = {
-      bezierCurve:false,
-      pointDotRadius: 8,
-      datasetFill: false,
-      scaleShowLabels: false
-    };
-    $scope.data = [ FormstackData.compileMonthlyData().phoneConversionRates, FormstackData.compileMonthlyData().noPhoneConversionRates ];
+  $scope.getChart = function() {
+    $scope.phoneConversionSum = FormstackData.getChart().phoneConversionSum;
+    $scope.noPhoneConversionSum = FormstackData.getChart().noPhoneConversionSum;
+    $scope.phoneTotalsSum = FormstackData.getChart().phoneTotalsSum;
+    $scope.noPhoneTotalsSum =   FormstackData.getChart().noPhoneTotalsSum;  
+    $scope.series = FormstackData.getChart().series;
+    $scope.labels = FormstackData.getChart().labels;
+    $scope.options = FormstackData.getChart().options;
+    $scope.data = FormstackData.getChart().finalConversionRate;
   };
-  //end charts
-  $scope.runTest();
+
   $scope.flip = function () {
     // set start and pause buttons to variables
     var startButton = angular.element(document.querySelector('#start-button'));
@@ -48,10 +31,6 @@ angular.module('formstack.controllers', ['ui.bootstrap'])
   };
 
   //calendar
-  $scope.startDate;
-  $scope.endDate;
-
-  //
   $scope.openStartDate = function($event) {
     $event.preventDefault();
     $event.stopPropagation();
@@ -71,7 +50,6 @@ angular.module('formstack.controllers', ['ui.bootstrap'])
     startingDay: 1
   };
 
-
   $scope.items = ['item1', 'item2', 'item3'];
   $scope.animationsEnabled = true;
 
@@ -81,11 +59,7 @@ angular.module('formstack.controllers', ['ui.bootstrap'])
       templateUrl: 'views/modal.html',
       controller: 'FormstackCtrl',
       size: size,
-      resolve: {
-        items: function () {
-          return $scope.items;
-        }
-      }
+      scope: $scope
     });
 
     modalInstance.result.then(function (selectedItem) {

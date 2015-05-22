@@ -6,7 +6,6 @@ angular.module('formstackFactory', [])
   var noPhone = { conversions: [3, 3, 2, 2, 2],
                   totals: [50, 50, 50, 60, 24] };
 
-
   var compileTotalsData = function() {
     var phoneConversionSum = phone.conversions.reduce(function(previousValue, currentValue) {
       return previousValue + currentValue;
@@ -47,8 +46,40 @@ angular.module('formstackFactory', [])
     };
   };
 
+  var getChart = function() {
+    Chart.defaults.global.colours = ['#41AA43', '#EA9E0A'];
+    
+    var phoneConversionSum = compileTotalsData().phoneConversionSum;
+    var phoneTotalsSum = compileTotalsData().phoneTotalsSum;
+    var noPhoneConversionSum = compileTotalsData().noPhoneConversionSum;
+    var noPhoneTotalsSum = compileTotalsData().noPhoneTotalsSum;
+    var finalConversionRate = [ compileMonthlyData().phoneConversionRates, compileMonthlyData().noPhoneConversionRates ];
+
+    var series = ['w/ Phone #', 'w/o Phone #'];
+    var labels = ['', '', '', '', ''];
+    var options = {
+      bezierCurve:false,
+      pointDotRadius: 8,
+      datasetFill: false,
+      scaleShowLabels: false,
+      maintainAspectRatio: false
+    };
+
+    return {
+      phoneConversionSum:phoneConversionSum,
+      noPhoneConversionSum:noPhoneConversionSum,
+      phoneTotalsSum:phoneTotalsSum,
+      noPhoneTotalsSum:noPhoneTotalsSum,
+      finalConversionRate: finalConversionRate,
+      series: series,
+      labels: labels,
+      options: options
+    };
+  };
+
   return {
     compileTotalsData:compileTotalsData,
-    compileMonthlyData:compileMonthlyData
+    compileMonthlyData:compileMonthlyData,
+    getChart: getChart
   };
 });
