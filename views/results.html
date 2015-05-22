@@ -1,1 +1,57 @@
-Newsletter Phone Number Test
+<div class="row">
+  <div class="col-md-9">
+    <h3>Newsletter Phone Number Test</h3>
+  </div>
+  <div class="col-md-3">
+    <h5>Reset Test</h5>
+    <button id='start-button' class='btn btn-start' ng-click='flip()'>Start</button>
+    <button id='pause-button' class='btn btn-green' ng-click='flip()'>Paused</button>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-9">
+    <canvas options="options" id="line" class="chart-line" data="data" labels="labels" legend="true" series="series" click="onClick"></canvas> 
+  </div>
+  <div class="col-md-3" id="chart-height">
+    <p>Scheduled For</p>
+
+    <p class="input-group">
+      <!-- <input class="form-control"  /> -->
+      <span class="input-group-btn" datepicker-popup ng-model="startDay" is-open="openedStartDate" datepicker-options="dateOptions" ng-required="true" close-text="Close">
+        <button type="button" class="btn btn-default" ng-click="openStartDate($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+      </span> {{startDate}}
+    </p>
+
+    <p class="input-group">
+      <input class="form-control" datepicker-popup ng-model="endDay" is-open="openedEndDate" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
+      <span class="input-group-btn">
+        <button type="button" class="btn btn-default" ng-click="openEndDate($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+      </span>
+    </p>
+
+    <button class='btn btn-start' ng-click='runTest()'>Start Test</button>
+    <button class='btn btn-end' ng-click='runTest()'>End Test</button>
+  </div>
+</div>
+<div class="row">
+  <table class='table table-hover center'>
+    <tr>
+      <th>Variation</th>
+      <th>Conversions / Visitors</th>
+      <th>Conversion Rate</th>
+      <th>Improvement</th>
+    </tr>
+    <tr>
+      <td>Without Phone</td>
+      <td>{{noPhoneConversionSum}}/{{noPhoneTotalsSum}}</td>
+      <td>{{noPhoneConversionSum/noPhoneTotalsSum | percent:2}}</td>
+      <td>{{(phoneConversionSum/phoneTotalsSum - noPhoneConversionSum/noPhoneTotalsSum) | percent:2}}</td>
+    </tr>
+    <tr>
+      <td>With Phone</td>
+      <td>{{phoneConversionSum}}/{{phoneTotalsSum}}</td>
+      <td>{{phoneConversionSum/phoneTotalsSum | percent:2}}</td>
+      <td></td>
+    </tr>
+  </table>
+</div>

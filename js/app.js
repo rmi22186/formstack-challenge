@@ -1,4 +1,4 @@
-angular.module('formstackApp',['ui.router', 'ui.bootstrap'])
+angular.module('formstackApp',['ui.router', 'ui.bootstrap', 'formstack.controllers', 'chart.js', 'formstackFactory'])
 
 .config(function($stateProvider, $urlRouterProvider) {
 

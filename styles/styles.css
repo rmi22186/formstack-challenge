@@ -1,0 +1,42 @@
+
+/* ***START*** button formatting*/
+.btn-start {
+  background-color: rgb(210, 217, 220);
+
+}
+
+.btn-green {
+  background-color: rgb(64, 170, 67);
+  color: white;
+}
+
+.btn:focus {
+  color: white;
+}
+
+.btn {
+  width: 80px;
+  height: 35px;
+  border-radius: 2px;
+}
+
+.btn-end {
+  color: white;
+  background-color: black;
+}
+
+/* ***END*** button formatting*/
+
+#chart-height {
+  height: 479px;
+}
+
+th {
+  color: rgb(98, 112, 122);
+  background-color: rgb(224, 233, 237);
+}
+
+th:not(:first-child), td:not(:first-child) {
+  text-align: center;
+  font-weight: bold;
+}
