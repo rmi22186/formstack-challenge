@@ -1,17 +1,6 @@
 angular.module('formstack.controllers', ['ui.bootstrap'])
 
-.config(function (datepickerConfig) {
-      datepickerConfig.showWeeks = false;
-    })
-
-//make calculations on front end have only 2 decimal points in % form
-.filter('percent', function($filter) {
-  return function(input, decimals) {
-    return $filter('number')(input * 100, decimals) + '%';
-  };
-})
-
-.controller('FormstackCtrl', function($scope, $modal, FormstackData) {
+.controller('FormstackCtrl', function($scope, FormstackData, $modal) {
   
   //start charts
   Chart.defaults.global.colours = [
@@ -88,4 +77,46 @@ angular.module('formstack.controllers', ['ui.bootstrap'])
     startingDay: 1
   };
 
+
+  $scope.items = ['item1', 'item2', 'item3'];
+  $scope.animationsEnabled = true;
+
+  $scope.open = function (size) {
+    var modalInstance = $modal.open({
+      animation: $scope.animationsEnabled,
+      templateUrl: 'views/modal.html',
+      controller: 'FormstackCtrl',
+      size: size,
+      resolve: {
+        items: function () {
+          return $scope.items;
+        }
+      }
+    });
+
+    modalInstance.result.then(function (selectedItem) {
+      $scope.selected = selectedItem;
+    }, function () {
+      $log.info('Modal dismissed at: ' + new Date());
+    });
+  };
+
+  $scope.toggleAnimation = function () {
+    $scope.animationsEnabled = !$scope.animationsEnabled;
+  };
 });
+
+// .controller('ModalInstanceCtrl', function ($scope, $modalInstance, items) {
+//   $scope.items = items;
+//   $scope.selected = {
+//     item: $scope.items[0]
+//   };
+
+//   $scope.ok = function () {
+//     $modalInstance.close($scope.selected.item);
+//   };
+
+//   $scope.cancel = function () {
+//     $modalInstance.dismiss('cancel');
+//   };
+// });
