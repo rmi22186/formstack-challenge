@@ -1,18 +1,15 @@
 angular.module('formstack.controllers', ['ui.bootstrap'])
 
-.controller('FormstackCtrl', function($scope, FormstackData, $modal) {
+.controller('FormstackCtrl', function($scope, FormstackData, $modal, $log) {
   
   //start charts
-  Chart.defaults.global.colours = [
-    '#41AA43',
-    '#EA9E0A'
-  ];
+  //green, orange -- why can't i store these as rgb!?
+  Chart.defaults.global.colours = ['#41AA43', '#EA9E0A'];
 
   $scope.phoneConversionSum = 0;
   $scope.phoneTotalsSum = 0;
   $scope.noPhoneConversionSum = 0;
   $scope.noPhoneTotalsSum = 0;
-
 
   $scope.runTest = function() {
     $scope.phoneConversionSum = FormstackData.compileTotalsData().phoneConversionSum;
@@ -28,13 +25,10 @@ angular.module('formstack.controllers', ['ui.bootstrap'])
       datasetFill: false,
       scaleShowLabels: false
     };
-    $scope.data = [ 
-                    FormstackData.compileMonthlyData().phoneConversionRates,
-                    FormstackData.compileMonthlyData().noPhoneConversionRates
-                  ];
+    $scope.data = [ FormstackData.compileMonthlyData().phoneConversionRates, FormstackData.compileMonthlyData().noPhoneConversionRates ];
   };
   //end charts
-
+  $scope.runTest();
   $scope.flip = function () {
     // set start and pause buttons to variables
     var startButton = angular.element(document.querySelector('#start-button'));
@@ -105,18 +99,3 @@ angular.module('formstack.controllers', ['ui.bootstrap'])
     $scope.animationsEnabled = !$scope.animationsEnabled;
   };
 });
-
-// .controller('ModalInstanceCtrl', function ($scope, $modalInstance, items) {
-//   $scope.items = items;
-//   $scope.selected = {
-//     item: $scope.items[0]
-//   };
-
-//   $scope.ok = function () {
-//     $modalInstance.close($scope.selected.item);
-//   };
-
-//   $scope.cancel = function () {
-//     $modalInstance.dismiss('cancel');
-//   };
-// });

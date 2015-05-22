@@ -1,16 +1,18 @@
-<div class="container">
-  <div class="row">
+<div class="container-fluid">
+  <div id="modaltitle" class="row text-center">
     You're ending this forms A/B test. Please pick the form you'd like to continue with.
   </div>
   <div class="row">
-    <canvas options="options" id="line" class="chart-line" data="data" labels="labels" legend="true" series="series" click="onClick"></canvas> 
+      <canvas options="options" id="line2" class="chart chart-line" data="data" labels="labels" series="series" click="onClick"></canvas> 
   </div>
   <div class="row">
-    <div class="col-lg-6">
-      This form out performed the other by 3.8%!
+    <div class="col-lg-6 text-center">
+      <p>This form out performed the other by 3.8%!</p>
+      <button class='btn btn-green'>Continue With This Version</button>
     </div>
-    <div class="col-lg-6">
-      This form lost to the other by 3.8%.
+    <div class="col-lg-6 text-center">
+      <p>This form lost to the other by 3.8%.</p>
+      <button class='btn btn-orange'>Continue With This Version</button>
     </div>
   </div>
   <div class="row">

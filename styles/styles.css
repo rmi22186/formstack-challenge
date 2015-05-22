@@ -1,3 +1,6 @@
+/*rgb(64, 170, 67) === '#41AA43' */
+
+/*rgb(234, 158, 10) === '#EA9E0A' */
 
 /* ***START*** button formatting*/
 .btn-start {
@@ -5,17 +8,24 @@
 
 }
 
+.btn {
+  color: white;
+}
+
 .btn-green {
   background-color: rgb(64, 170, 67);
-  color: white;
 }
 
-.btn:focus {
-  color: white;
+.btn-orange {
+  background-color: rgb(234, 158, 10);
 }
 
+/*.btn:focus {
+  color: white;
+}
+*/
 .btn {
-  width: 80px;
+  min-width: 80px;
   height: 35px;
   border-radius: 2px;
 }
@@ -39,4 +49,26 @@ th {
 th:not(:first-child), td:not(:first-child) {
   text-align: center;
   font-weight: bold;
+}
+ 
+small {
+  color: rgb(163, 136, 145);
+}
+
+.modal-dialog{
+  width: 700px; 
+  position: absolute;
+  top:0; 
+  bottom: 0; 
+  left: 0; 
+  right: 0;
+  margin: auto
+}
+
+#line2 {
+  padding: 20px;
+}
+
+#modaltitle {
+  padding-top: 20px;
 }
