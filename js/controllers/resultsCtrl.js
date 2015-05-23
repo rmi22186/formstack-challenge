@@ -1,17 +1,8 @@
 angular.module('formstack.controllers', ['ui.bootstrap'])
 
 .controller('FormstackCtrl', function($scope, FormstackData, $modal, $log) {
-  $scope.getChart = function() {
-    $scope.phoneConversionSum = FormstackData.getChart().phoneConversionSum;
-    $scope.noPhoneConversionSum = FormstackData.getChart().noPhoneConversionSum;
-    $scope.phoneTotalsSum = FormstackData.getChart().phoneTotalsSum;
-    $scope.noPhoneTotalsSum =   FormstackData.getChart().noPhoneTotalsSum;  
-    $scope.series = FormstackData.getChart().series;
-    $scope.labels = FormstackData.getChart().labels;
-    $scope.options = FormstackData.getChart().options;
-    $scope.data = FormstackData.getChart().finalConversionRate;
-  };
-
+  
+  //feature 1 - click start / pause buttons
   $scope.flip = function () {
     // set start and pause buttons to variables
     var startButton = angular.element(document.querySelector('#start-button'));
@@ -30,7 +21,7 @@ angular.module('formstack.controllers', ['ui.bootstrap'])
     }
   };
 
-  //calendar
+  //feature 2 - calendar
   $scope.openStartDate = function($event) {
     $event.preventDefault();
     $event.stopPropagation();
@@ -50,26 +41,32 @@ angular.module('formstack.controllers', ['ui.bootstrap'])
     startingDay: 1
   };
 
-  $scope.items = ['item1', 'item2', 'item3'];
-  $scope.animationsEnabled = true;
+  //feature 3 - create chart once both date fields are filled out
+  $scope.$watchGroup(['startDate', 'endDate'], function(newValues, oldValues, scope) {
+    var endButton = angular.element(document.querySelector('#end-button'));
+    if (newValues[0] && newValues[1]) {
+      $scope.getChart();
+      endButton.removeClass('hidden');
+    }
+  });
 
-  $scope.open = function (size) {
-    var modalInstance = $modal.open({
-      animation: $scope.animationsEnabled,
-      templateUrl: 'views/modal.html',
-      controller: 'FormstackCtrl',
-      size: size,
-      scope: $scope
-    });
-
-    modalInstance.result.then(function (selectedItem) {
-      $scope.selected = selectedItem;
-    }, function () {
-      $log.info('Modal dismissed at: ' + new Date());
-    });
+  $scope.getChart = function() {
+    $scope.phoneConversionSum = FormstackData.getChart().phoneConversionSum;
+    $scope.noPhoneConversionSum = FormstackData.getChart().noPhoneConversionSum;
+    $scope.phoneTotalsSum = FormstackData.getChart().phoneTotalsSum;
+    $scope.noPhoneTotalsSum =   FormstackData.getChart().noPhoneTotalsSum;  
+    $scope.series = FormstackData.getChart().series;
+    $scope.labels = FormstackData.getChart().labels;
+    $scope.options = FormstackData.getChart().options;
+    $scope.data = FormstackData.getChart().finalConversionRate;
   };
 
-  $scope.toggleAnimation = function () {
-    $scope.animationsEnabled = !$scope.animationsEnabled;
+  //feature 4 - open modal with data
+  $scope.open = function () {
+    var modalInstance = $modal.open({
+      templateUrl: 'views/modal.html',
+      controller: 'FormstackCtrl',
+      scope: $scope
+    });
   };
 });

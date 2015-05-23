@@ -1,14 +1,29 @@
-/*rgb(64, 170, 67) === '#41AA43' */
 
-/*rgb(234, 158, 10) === '#EA9E0A' */
+/* green rgb(64, 170, 67) === '#41AA43' */
+
+/* orange rgb(234, 158, 10) === '#EA9E0A' */
 
 /* ***START*** button formatting*/
+
 .btn-start {
   background-color: rgb(210, 217, 220);
 }
-/*TODO: adjust button css so calendar isn't interfering with it*/
-.btn {
+
+.btn-white-font {
   color: white;
+  min-width:80px;
+  height: 35px;
+  border-radius: 2px;
+}
+
+#start-button {
+  width: 45%;
+  padding: 0px;
+}
+
+#pause-button {
+  width: 45%;
+  padding: 0px;
 }
 
 .btn-green {
@@ -23,15 +38,10 @@
   color: white;
 }
 
-.btn {
-  min-width: 80px;
-  height: 35px;
-  border-radius: 2px;
-}
-
 .btn-end {
   color: white;
   background-color: black;
+  width: 90%;
 }
 
 /* ***END*** button formatting*/
@@ -70,6 +80,24 @@ small {
   height: 200px !important;
 }
 
-#modaltitle {
+#modal-title {
   padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+#modal-footer {
+  padding-top: 20px;
+  padding-bottom: 20px; 
+}
+
+.hidden {
+  display:none;
+}
+
+.green {
+  color: #41AA43;
+}
+
+.orange {
+  color: #EA9E0A;
 }

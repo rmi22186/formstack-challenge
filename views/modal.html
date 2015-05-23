@@ -1,5 +1,5 @@
 <div class="container-fluid">
-  <div id="modaltitle" class="row text-center">
+  <div id="modal-title" class="row text-center">
     You're ending this forms A/B test. Please pick the form you'd like to continue with.
   </div>
   <div class="row">
@@ -8,16 +8,18 @@
   <div class="row">
     <div class="col-lg-6 text-center">
       <p><img src = '../assets/green.png'><strong>With Phone Number</strong></p>
-      <p>This form out performed the other by 3.8%!</p>
-      <button class='btn btn-green'>Continue With This Version</button>
+      <p>This form outperformed the other by <span class='green'><strong>3.8%</strong></span>!</p>
+      <button class='btn btn-green btn-white-font'>Continue With This Version</button>
     </div>
     <div class="col-lg-6 text-center">
       <p><img src = '../assets/orange.png'><strong>Without Phone Number</strong></p>
-      <p>This form lost to the other by 3.8%.</p>
-      <button class='btn btn-orange'>Continue With This Version</button>
+      <p>This form lost to the other by <span class='orange'><strong>3.8%</strong></span>.</p>
+      <button class='btn btn-orange btn-white-font'>Continue With This Version</button>
     </div>
   </div>
   <div class="row">
-    <small>You will have the chance to save any data that may be lost by removing the form version you choose to not continue with.</small>
+    <div class="col-lg-12 text-center" id="modal-footer">
+      <small >You will have the chance to save any data that may be lost by removing the form version you choose to not continue with.</small>
+    </div>
   </div>
 </div>

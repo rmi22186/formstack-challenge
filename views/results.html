@@ -4,8 +4,8 @@
   </div>
   <div class="col-md-3">
     <h5>Reset Test</h5>
-    <button id='start-button' class='btn btn-start' ng-click='flip()'>Start</button>
-    <button id='pause-button' class='btn btn-green' ng-click='flip()'>Paused</button>
+    <button id='start-button' class='btn btn-start btn-white-font' ng-click='flip()'>Start</button>
+    <button id='pause-button' class='btn btn-green btn-white-font' ng-click='flip()'>Paused</button>
   </div>
 </div>
 <div class="row">
@@ -16,21 +16,20 @@
     <p>Scheduled For</p>
 
     <p class="input-group">
-      <!-- <input class="form-control"  /> -->
-      <span class="input-group-btn" datepicker-popup ng-model="startDay" is-open="openedStartDate" datepicker-options="dateOptions" ng-required="true" close-text="Close">
-        <button type="button" class="btn btn-default" ng-click="openStartDate($event)"><i class="glyphicon glyphicon-calendar"></i></button>
-      </span> {{startDate}}
+      <span class="input-group-btn" datepicker-popup ng-model="startDate" is-open="openedStartDate" datepicker-options="dateOptions" ng-required="true" close-text="Close">
+        <button type="button" class="btn btn-default" ng-click="openStartDate($event)"><i class="glyphicon glyphicon-calendar"></i></button> 
+      </span> 
+      &nbsp; Start Date: {{startDate | date: 'mediumDate'}}
     </p>
 
     <p class="input-group">
-      <input class="form-control" datepicker-popup ng-model="endDay" is-open="openedEndDate" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
-      <span class="input-group-btn">
+      <span class="input-group-btn" datepicker-popup ng-model="endDate" is-open="openedEndDate" datepicker-options="dateOptions" ng-required="true" close-text="Close">
         <button type="button" class="btn btn-default" ng-click="openEndDate($event)"><i class="glyphicon glyphicon-calendar"></i></button>
       </span>
+      &nbsp; End Date: {{endDate | date: 'mediumDate'}}
     </p>
 
-    <button class='btn btn-start' ng-click='getChart()'>Start Test</button>
-    <button class='btn btn-end' ng-click='open("test")'>End Test</button>
+    <button id="end-button" class='btn btn-end btn-white-font hidden' ng-click='open()'>End Test</button>
   </div>
 </div>
 <div class="row">
