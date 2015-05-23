@@ -2,7 +2,7 @@ angular.module('formstack.controllers', ['ui.bootstrap'])
 
 .controller('FormstackCtrl', function($scope, FormstackData, $modal, $log) {
   
-  //feature 1 - click start / pause buttons
+  //FEATURE 1 - click start / pause buttons
   $scope.flip = function () {
     // set start and pause buttons to variables
     var startButton = angular.element(document.querySelector('#start-button'));
@@ -21,18 +21,16 @@ angular.module('formstack.controllers', ['ui.bootstrap'])
     }
   };
 
-  //feature 2 - calendar
+  //FEATURE 2 - calendar
   $scope.openStartDate = function($event) {
     $event.preventDefault();
     $event.stopPropagation();
-
     $scope.openedStartDate = true;
   };
 
   $scope.openEndDate = function($event) {
     $event.preventDefault();
     $event.stopPropagation();
-
     $scope.openedEndDate = true;
   };
 
@@ -41,12 +39,13 @@ angular.module('formstack.controllers', ['ui.bootstrap'])
     startingDay: 1
   };
 
-  //feature 3 - create chart once both date fields are filled out
+  //FEATURE 3 - create chart once both date fields are filled out
   $scope.$watchGroup(['startDate', 'endDate'], function(newValues, oldValues, scope) {
-    var endButton = angular.element(document.querySelector('#end-button'));
     if (newValues[0] && newValues[1]) {
+      //when both values change, remove the no-data div, fill in the chart, and show the end button
+      angular.element(document.querySelector('.no-data')).remove();
       $scope.getChart();
-      endButton.removeClass('hidden');
+      angular.element(document.querySelector('#end-button')).removeClass('hidden');
     }
   });
 
@@ -61,7 +60,7 @@ angular.module('formstack.controllers', ['ui.bootstrap'])
     $scope.data = FormstackData.getChart().finalConversionRate;
   };
 
-  //feature 4 - open modal with data
+  //FEATURE 4 - open modal with chart
   $scope.open = function () {
     var modalInstance = $modal.open({
       templateUrl: 'views/modal.html',

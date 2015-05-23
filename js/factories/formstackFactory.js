@@ -62,7 +62,8 @@ angular.module('formstackFactory', [])
       pointDotRadius: 8,
       datasetFill: false,
       scaleShowLabels: false,
-      maintainAspectRatio: false
+      maintainAspectRatio: false,
+      showTooltips: false
     };
 
     return {
