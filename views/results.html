@@ -9,10 +9,14 @@
   </div>
 </div>
 <div class="row">
+  <!-- START CHART -->
   <div class="col-md-9">
     <div class="no-data">No Data Yet! Please run a test by choosing dates on the right!</div>
-    <canvas options="options" id="line" class="chart-line" data="data" labels="labels" backgroundColor='backgroundColor' legend="true" series="series" click="onClick"></canvas> 
+    <canvas options="options" id="line" class="chart-line" data="data" labels="labels" backgroundColor='backgroundColor' legend="true" series="series"></canvas> 
   </div>
+  <!-- END CHART -->
+
+  <!-- START CALENDAR -->
   <div class="col-md-3" id="chart-height">
     <p>Scheduled For</p>
 
@@ -32,7 +36,10 @@
 
     <button id="end-button" class='btn btn-end btn-white-font hidden' ng-click='open()'>End Test</button>
   </div>
+  <!-- END CALENDAR -->
 </div>
+
+  <!-- START TABLE -->
 <div class="row">
   <table class='table table-hover center'>
     <tr>
@@ -43,15 +50,28 @@
     </tr>
     <tr>
       <td>Without Phone</td>
-      <td>{{noPhoneConversionSum}}/{{noPhoneTotalsSum}}</td>
-      <td>{{noPhoneConversionSum/noPhoneTotalsSum | percent:2}}</td>
-      <td>{{(phoneConversionSum/phoneTotalsSum - noPhoneConversionSum/noPhoneTotalsSum) | percent:2}}</td>
+      <!-- show 0s for data when chart hasn't been loaded -->
+      <td ng-if="chartLoaded===false">0/0</td>
+      <td ng-if="chartLoaded===false">0%</td>
+      <td ng-if="chartLoaded===false">0%</td>
+
+      <td ng-if="chartLoaded===true">{{noPhoneConversionSum}}/{{noPhoneTotalsSum}}</td>
+      <td ng-if="chartLoaded===true">{{noPhoneConversionSum/noPhoneTotalsSum | percent:2}}</td>
+      <td></td>
     </tr>
     <tr>
       <td>With Phone</td>
-      <td>{{phoneConversionSum}}/{{phoneTotalsSum}}</td>
-      <td>{{phoneConversionSum/phoneTotalsSum | percent:2}}</td>
-      <td></td>
+      <div>
+        <td ng-if="chartLoaded===false">0/0</td>
+        <td ng-if="chartLoaded===false">0%</td>
+        <td ng-if="chartLoaded===false">0%</td>
+      </div>
+      <div>
+        <td ng-if="chartLoaded===true">{{phoneConversionSum}}/{{phoneTotalsSum}}</td>
+        <td ng-if="chartLoaded===true">{{phoneConversionSum/phoneTotalsSum | percent:2}}</td>
+        <td ng-if="chartLoaded===true">{{(phoneConversionSum/phoneTotalsSum - noPhoneConversionSum/noPhoneTotalsSum) | percent:2}}</td>
+      </div>
     </tr>
   </table>
+  <!-- END TABLE -->
 </div>

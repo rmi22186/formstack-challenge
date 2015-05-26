@@ -1,7 +1,6 @@
 angular.module('formstack.controllers', ['ui.bootstrap'])
 
 .controller('FormstackCtrl', function($scope, FormstackData, $modal, $log) {
-  
   //FEATURE 1 - click start / pause buttons
   $scope.flip = function () {
     // set start and pause buttons to variables
@@ -40,24 +39,34 @@ angular.module('formstack.controllers', ['ui.bootstrap'])
   };
 
   //FEATURE 3 - create chart once both date fields are filled out
+  //set current loaded status to false
+  $scope.chartLoaded = false;
+
   $scope.$watchGroup(['startDate', 'endDate'], function(newValues, oldValues, scope) {
+    //when both values change
     if (newValues[0] && newValues[1]) {
-      //when both values change, remove the no-data div, fill in the chart, and show the end button
+      //remove the no-data 
       angular.element(document.querySelector('.no-data')).remove();
+      //fill in the chart
       $scope.getChart();
+      // show the end button
       angular.element(document.querySelector('#end-button')).removeClass('hidden');
     }
   });
-
+  
   $scope.getChart = function() {
+    //data for table
     $scope.phoneConversionSum = FormstackData.getChart().phoneConversionSum;
     $scope.noPhoneConversionSum = FormstackData.getChart().noPhoneConversionSum;
     $scope.phoneTotalsSum = FormstackData.getChart().phoneTotalsSum;
     $scope.noPhoneTotalsSum =   FormstackData.getChart().noPhoneTotalsSum;  
+    //data for chart
     $scope.series = FormstackData.getChart().series;
     $scope.labels = FormstackData.getChart().labels;
     $scope.options = FormstackData.getChart().options;
     $scope.data = FormstackData.getChart().finalConversionRate;
+    //set chartLoaded to true so that html loads data instead of 0s
+    $scope.chartLoaded = true;
   };
 
   //FEATURE 4 - open modal with chart

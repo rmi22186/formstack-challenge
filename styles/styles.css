@@ -3,7 +3,7 @@
 
 /* orange rgb(234, 158, 10) === '#EA9E0A' */
 
-/* ***START*** button formatting*/
+/* START BUTTON FORMATTING */
 
 .btn-start {
   background-color: rgb(210, 217, 220);
@@ -44,7 +44,21 @@
   width: 90%;
 }
 
-/* ***END*** button formatting*/
+.hidden {
+  display:none;
+}
+
+/* END BUTTON FORMATTING */
+
+.green {
+  color: #41AA43;
+}
+
+.orange {
+  color: #EA9E0A;
+}
+
+/* START CHART AND TABLE FORMATTING*/
 
 #chart-height {
   height: 350px;
@@ -64,6 +78,10 @@ small {
   color: rgb(163, 136, 145);
 }
 
+/* END CHART AND TABLE FORMATTING*/
+
+/* START MODAL FORMATTING*/
+
 .modal-dialog{
   width: 685px; 
   height: 422px; 
@@ -72,7 +90,7 @@ small {
   bottom: 0; 
   left: 0; 
   right: 0;
-  margin: auto
+  margin: auto;
 }
 
 #line2 {
@@ -83,6 +101,8 @@ small {
 #modal-title {
   padding-top: 20px;
   padding-bottom: 20px;
+  color: rgb(124, 127, 138);
+  font-weight: bold;
 }
 
 #modal-footer {
@@ -90,14 +110,4 @@ small {
   padding-bottom: 20px; 
 }
 
-.hidden {
-  display:none;
-}
-
-.green {
-  color: #41AA43;
-}
-
-.orange {
-  color: #EA9E0A;
-}
+/* END MODAL FORMATTING*/

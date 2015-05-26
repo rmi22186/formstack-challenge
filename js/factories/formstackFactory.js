@@ -1,11 +1,14 @@
 angular.module('formstackFactory', [])
 
+
 .factory('FormstackData', function() {
+  //fake data
   var phone = { conversions: [1, 3, 3, 8, 3],
                 totals: [15, 40, 26, 100, 20] };
   var noPhone = { conversions: [3, 3, 2, 2, 2],
                   totals: [50, 50, 50, 60, 24] };
 
+  //calculates aggregate conversion data for table
   var compileTotalsData = function() {
     var phoneConversionSum = phone.conversions.reduce(function(previousValue, currentValue) {
       return previousValue + currentValue;
@@ -48,7 +51,6 @@ angular.module('formstackFactory', [])
 
   var getChart = function() {
     Chart.defaults.global.colours = ['#41AA43', '#EA9E0A'];
-    
     var phoneConversionSum = compileTotalsData().phoneConversionSum;
     var phoneTotalsSum = compileTotalsData().phoneTotalsSum;
     var noPhoneConversionSum = compileTotalsData().noPhoneConversionSum;
